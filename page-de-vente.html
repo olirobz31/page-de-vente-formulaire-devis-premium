@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Formulaire de devis multi-étapes premium — Design moderne, responsive, accessible. Prêt à l'emploi.">
+  <meta name="theme-color" content="#6366f1">
+  
+  <title>Formulaire de Devis Premium — Template Multi-Étapes</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%236366f1' rx='20' width='100' height='100'/%3E%3Ctext x='50' y='68' text-anchor='middle' fill='white' font-size='50' font-family='system-ui'%3E✦%3C/text%3E%3C/svg%3E">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap">
+  
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════════════
+       PAGE DE VENTE PREMIUM — Formulaire de Devis
+    ═══════════════════════════════════════════════════════════════════════════ */
+    
+    :root {
+      /* Palette principale */
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --primary-light: #818cf8;
+      --primary-glow: rgba(99, 102, 241, 0.4);
+      
+      /* Accents */
+      --accent-pink: #ec4899;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      
+      /* Surfaces */
+      --bg-dark: #0a0a12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.15);
+      
+      /* Texte */
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      /* Effets */
+      --gradient-main: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+      --shadow-glow: 0 0 60px var(--primary-glow);
+      --blur: 100px;
+      
+      /* Animation */
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      background: var(--bg-dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       BACKGROUND GLOBAL
+    ───────────────────────────────────────────────────────────────────────── */
+    .bg-gradient {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .bg-gradient::before {
+      content: '';
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      background: var(--primary);
+      border-radius: 50%;
+      filter: blur(var(--blur));
+      opacity: 0.15;
+      top: -300px;
+      right: -200px;
+      animation: float 25s ease-in-out infinite;
+    }
+    
+    .bg-gradient::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: var(--accent-pink);
+      border-radius: 50%;
+      filter: blur(var(--blur));
+      opacity: 0.1;
+      bottom: -200px;
+      left: -150px;
+      animation: float 20s ease-in-out infinite reverse;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(50px, -50px) scale(1.1); }
+      66% { transform: translate(-30px, 30px) scale(0.95); }
+    }
+    
+    /* Grille de fond */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       LAYOUT
+    ───────────────────────────────────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    section {
+      padding: 100px 0;
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       TYPOGRAPHIE
+    ───────────────────────────────────────────────────────────────────────── */
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.02em;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+    }
+    
+    .gradient-text {
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .mono {
+      font-family: 'Space Mono', monospace;
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       HEADER / NAV
+    ───────────────────────────────────────────────────────────────────────── */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(10, 10, 18, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient-main);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--gradient-main);
+      color: white;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s var(--ease);
+    }
+    
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow);
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       HERO SECTION
+    ───────────────────────────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 120px;
+      text-align: center;
+    }
+    
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      animation: fadeInUp 0.8s var(--ease) both;
+    }
+    
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .hero h1 {
+      margin-bottom: 24px;
+      animation: fadeInUp 0.8s 0.1s var(--ease) both;
+    }
+    
+    .hero-description {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      animation: fadeInUp 0.8s 0.2s var(--ease) both;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s 0.3s var(--ease) both;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Boutons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 32px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+    }
+    
+    .btn-primary {
+      background: var(--gradient-main);
+      color: white;
+      box-shadow: 0 4px 20px var(--primary-glow);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 40px var(--primary-glow);
+    }
+    
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       VIDEO SECTION
+    ───────────────────────────────────────────────────────────────────────── */
+    .video-section {
+      padding: 0 0 100px;
+    }
+    
+    .video-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.4),
+        0 0 80px var(--primary-glow);
+      animation: fadeInUp 0.8s 0.4s var(--ease) both;
+    }
+    
+    .video-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-card);
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .video-container {
+      position: relative;
+      padding-top: 56.25%; /* Ratio 16:9 */
+      background: #111;
+    }
+    
+    .video-container iframe,
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    /* Placeholder si pas de vidéo */
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: var(--text-muted);
+      gap: 16px;
+    }
+    
+    .video-placeholder svg {
+      width: 80px;
+      height: 80px;
+      opacity: 0.5;
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       FEATURES SECTION
+    ───────────────────────────────────────────────────────────────────────── */
+    .features {
+      position: relative;
+    }
+    
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 64px;
+    }
+    
+    .section-header p {
+      margin-top: 16px;
+      font-size: 1.1rem;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.4s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-main);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+    }
+    
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+    
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .feature-icon.purple { background: rgba(99, 102, 241, 0.15); color: var(--primary-light); }
+    .feature-icon.pink { background: rgba(236, 72, 153, 0.15); color: var(--accent-pink); }
+    .feature-icon.cyan { background: rgba(6, 182, 212, 0.15); color: var(--accent-cyan); }
+    .feature-icon.green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+    .feature-icon.orange { background: rgba(245, 158, 11, 0.15); color: var(--accent-orange); }
+    
+    .feature-card h3 {
+      margin-bottom: 12px;
+    }
+    
+    .feature-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       PREVIEW SECTION
+    ───────────────────────────────────────────────────────────────────────── */
+    .preview {
+      position: relative;
+    }
+    
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    
+    .preview-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s var(--ease);
+    }
+    
+    .preview-card:hover {
+      border-color: var(--border-hover);
+      transform: scale(1.02);
+    }
+    
+    .preview-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .preview-label {
+      padding: 20px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--text-primary);
+      border-top: 1px solid var(--border);
+    }
+    
+    /* Placeholder pour les images */
+    .preview-placeholder {
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       INCLUDES SECTION
+    ───────────────────────────────────────────────────────────────────────── */
+    .includes {
+      position: relative;
+    }
+    
+    .includes-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px;
+      max-width: 800px;
+      margin: 48px auto 0;
+    }
+    
+    .includes-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .includes-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 1.05rem;
+    }
+    
+    .check-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: rgba(16, 185, 129, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-green);
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       PRICING SECTION
+    ───────────────────────────────────────────────────────────────────────── */
+    .pricing {
+      position: relative;
+    }
+    
+    .pricing-card {
+      max-width: 500px;
+      margin: 48px auto 0;
+      background: var(--bg-card);
+      border: 2px solid var(--primary);
+      border-radius: 28px;
+      padding: 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-main);
+    }
+    
+    .pricing-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--gradient-main);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+    
+    .pricing-price {
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    
+    .pricing-price span {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+    
+    .pricing-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+    
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+    
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+    
+    .pricing-features svg {
+      flex-shrink: 0;
+      color: var(--accent-green);
+    }
+    
+    .pricing-cta {
+      width: 100%;
+      padding: 18px 32px;
+      font-size: 1.1rem;
+    }
+    
+    .pricing-note {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       FAQ SECTION
+    ───────────────────────────────────────────────────────────────────────── */
+    .faq {
+      position: relative;
+    }
+    
+    .faq-grid {
+      max-width: 800px;
+      margin: 48px auto 0;
+    }
+    
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      border-color: var(--border-hover);
+    }
+    
+    .faq-question {
+      width: 100%;
+      padding: 24px;
+      background: none;
+      border: none;
+      text-align: left;
+      font-family: inherit;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .faq-question svg {
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+      color: var(--text-muted);
+    }
+    
+    .faq-item.open .faq-question svg {
+      transform: rotate(45deg);
+    }
+    
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease);
+    }
+    
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+    
+    .faq-answer-inner {
+      padding: 0 24px 24px;
+      color: var(--text-secondary);
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       CTA SECTION
+    ───────────────────────────────────────────────────────────────────────── */
+    .cta-section {
+      text-align: center;
+      padding: 120px 0;
+    }
+    
+    .cta-box {
+      background: var(--gradient-main);
+      border-radius: 32px;
+      padding: 80px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .cta-box h2 {
+      color: white;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    
+    .cta-box p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1.2rem;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    
+    .cta-box .btn {
+      background: white;
+      color: var(--primary-dark);
+      position: relative;
+    }
+    
+    .cta-box .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────────────────────────────────── */
+    .footer {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    
+    .footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    
+    .footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer a:hover {
+      color: var(--primary-light);
+    }
+    
+    /* ─────────────────────────────────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+      
+      section {
+        padding: 60px 0;
+      }
+      
+      .hero {
+        padding-top: 100px;
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .preview-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .includes-box {
+        padding: 32px 24px;
+      }
+      
+      .pricing-card {
+        padding: 32px 24px;
+      }
+      
+      .pricing-price {
+        font-size: 3rem;
+      }
+      
+      .cta-box {
+        padding: 48px 24px;
+        border-radius: 24px;
+      }
+    }
+    
+    /* Animation au scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s var(--ease);
+    }
+    
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Background -->
+  <div class="bg-gradient"></div>
+  <div class="bg-grid"></div>
+  
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <span>FormPremium</span>
+      </a>
+      <a href="#pricing" class="nav-cta">
+        Acheter maintenant
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Template prêt à l'emploi
+        </div>
+        
+        <h1>
+          Formulaire de Devis<br>
+          <span class="gradient-text">Multi-Étapes Premium</span>
+        </h1>
+        
+        <p class="hero-description">
+          Un design glassmorphism moderne, responsive et accessible. 
+          Intégration facile, 2 versions incluses. Parfait pour les freelances et agences.
+        </p>
+        
+        <div class="hero-cta">
+          <a href="https://olirobz.gumroad.com/l/formulairede-devis-premium-multi-etapes" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+            Acheter — 79€
+          </a>
+          <a href="#demo" class="btn btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+            Voir la démo
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Video Section -->
+  <section class="video-section" id="demo">
+    <div class="container">
+      <div class="video-wrapper">
+        <div class="video-container">
+  <iframe src="https://player.vimeo.com/video/1146500147?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen></iframe>
+</div>
+  
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Tout ce dont tu as besoin</h2>
+        <p>Un template complet, pensé pour convertir tes visiteurs en clients.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon purple">🎨</div>
+          <h3>Design Glassmorphism</h3>
+          <p>Effets de flou, dégradés subtils, animations fluides. Un look moderne et premium.</p>
+        </div>
+        
+        <div class="feature-card reveal">
+          <div class="feature-icon pink">🌙</div>
+          <h3>Mode Sombre</h3>
+          <p>Bascule automatique clair/sombre avec sauvegarde des préférences utilisateur.</p>
+        </div>
+        
+        <div class="feature-card reveal">
+          <div class="feature-icon cyan">📱</div>
+          <h3>100% Responsive</h3>
+          <p>Parfait sur mobile, tablette et desktop. Testé sur tous les navigateurs.</p>
+        </div>
+        
+        <div class="feature-card reveal">
+          <div class="feature-icon green">♿</div>
+          <h3>Accessible</h3>
+          <p>Compatible lecteurs d'écran, navigation clavier, ARIA labels.</p>
+        </div>
+        
+        <div class="feature-card reveal">
+          <div class="feature-icon orange">🛡️</div>
+          <h3>Anti-Spam</h3>
+          <p>Protection honeypot intégrée. Bloque les bots sans captcha intrusif.</p>
+        </div>
+        
+        <div class="feature-card reveal">
+          <div class="feature-icon purple">✅</div>
+          <h3>Validation Complète</h3>
+          <p>Validation côté client ET serveur. Messages d'erreur élégants.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Preview Section -->
+  <section class="preview" id="preview">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Aperçu du template</h2>
+        <p>Mode clair et mode sombre inclus.</p>
+      </div>
+      
+      <div class="preview-grid">
+        <div class="preview-card reveal">
+          <!-- Remplace par ton screenshot mode clair -->
+          <img src="formulaire-devis-clair.png" alt="Formulaire mode clair">
+          <div class="preview-label">☀️ Mode Clair</div>
+        </div>
+        
+        <div class="preview-card reveal">
+          <!-- Remplace par ton screenshot mode sombre -->
+          <img src="formulaire-devis-sombre.png" alt="Formulaire mode sombre">
+          <div class="preview-label">🌙 Mode Sombre</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Includes Section -->
+  <section class="includes" id="includes">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Ce qui est inclus</h2>
+        <p>Tout est prêt, tu n'as qu'à personnaliser.</p>
+      </div>
+      
+      <div class="includes-box reveal">
+        <ul class="includes-list">
+          <li>
+            <span class="check-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span><strong>Version Web3Forms</strong> — Sans serveur</span>
+          </li>
+          <li>
+            <span class="check-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span><strong>Version PHP</strong> — Avec pièces jointes</span>
+          </li>
+          <li>
+            <span class="check-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span><strong>Page de confirmation</strong> — Style assorti</span>
+          </li>
+          <li>
+            <span class="check-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span><strong>Documentation</strong> — Guide d'installation</span>
+          </li>
+          <li>
+            <span class="check-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span><strong>Code commenté</strong> — Facile à personnaliser</span>
+          </li>
+          <li>
+            <span class="check-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span><strong>Mises à jour gratuites</strong> — À vie</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Un investissement rentable</h2>
+        <p>Gagne du temps et impressionne tes clients.</p>
+      </div>
+      
+      <div class="pricing-card reveal">
+        <div class="pricing-badge">Pack Complet</div>
+        
+        <div class="pricing-price">
+          79<span>€</span>
+        </div>
+        <p class="pricing-subtitle">Paiement unique — Pas d'abonnement</p>
+        
+        <ul class="pricing-features">
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            2 versions incluses (Web3Forms + PHP)
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Mode clair + mode sombre
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Documentation complète
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Support par email
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Mises à jour gratuites à vie
+          </li>
+        </ul>
+        
+        <!-- 
+        ═══════════════════════════════════════════════════════════════════
+        🛒 LIEN D'ACHAT
+        Remplace # par ton lien Gumroad ou Lemonsqueezy
+        ═══════════════════════════════════════════════════════════════════
+        -->
+        <a href="https://olirobz.gumroad.com/l/formulairede-devis-premium-multi-etapes" class="btn btn-primary pricing-cta">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          Acheter maintenant
+        </a>
+        
+        <p class="pricing-note">🔒 Paiement sécurisé via Gumroad</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Questions fréquentes</h2>
+      </div>
+      
+      <div class="faq-grid">
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            Ai-je besoin de connaissances en code ?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Des bases en HTML suffisent pour personnaliser les textes et couleurs. La documentation détaillée t'accompagne étape par étape.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            Quelle version dois-je choisir ?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <strong>Web3Forms</strong> si tu utilises GitHub Pages, Netlify ou un hébergement sans PHP. <strong>Version PHP</strong> si tu as un hébergement classique (OVH, o2switch...) et veux les pièces jointes.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            Puis-je l'utiliser pour mes clients ?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Oui ! Tu peux l'utiliser sur autant de projets clients que tu veux. Tu ne peux pas le revendre tel quel comme template.
+            </div>
+          </div>
+        </div>
+        
+        <div class="faq-item reveal">
+          <button class="faq-question">
+            Y a-t-il du support ?
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Oui, je réponds par email pour toute question d'installation ou de configuration. Le support est inclus dans ton achat.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box reveal">
+        <h2>Prêt à convertir plus de visiteurs ?</h2>
+        <p>Installe ton formulaire premium en moins de 10 minutes.</p>
+        <a href="https://olirobz.gumroad.com/l/formulairede-devis-premium-multi-etapes" class="btn">
+  Acheter pour 79€
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <line x1="5" y1="12" x2="19" y2="12"/>
+    <polyline points="12 5 19 12 12 19"/>
+  </svg>
+</a>
+
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>
+        Créé avec ❤️ par <a href="#">olirobz31</a> — 
+        <a href="mailto:olirobz31@gmail.com">Contact</a>
+      </p>
+    </div>
+  </footer>
+  
+  <!-- Scripts -->
+  <script>
+    // FAQ Toggle
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        
+        // Ferme tous les autres
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        
+        // Toggle celui-ci
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+    
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    
+    const revealOnScroll = () => {
+      reveals.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (top < windowHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Initial check
+    
+    // Smooth scroll pour les ancres
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
